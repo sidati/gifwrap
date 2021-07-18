@@ -254,6 +254,11 @@ exports.shareAsJimp = function (jimp, bitmapImageToShare) {
 
 exports.write = function (path, frames, spec, encoder) {
     encoder = encoder || defaultCodec;
+    
+    if (path) {
+        return encoder.encodeGif(frames, spec).then(gif => gif);
+    }
+    
     const matches = path.match(/\.[a-zA-Z]+$/); // prevent accidents
     if (matches !== null &&
             INVALID_SUFFIXES.includes(matches[0].toLowerCase()))
@@ -263,14 +268,8 @@ exports.write = function (path, frames, spec, encoder) {
 
     return encoder.encodeGif(frames, spec)
     .then(gif => {
-        
-        if (!path) {
-            return gif;
-        }
-
         return _writeBinary(path, gif.buffer)
         .then(() => {
-
             return gif;
         });
     });
