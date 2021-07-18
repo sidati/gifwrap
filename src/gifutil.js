@@ -263,6 +263,10 @@ exports.write = function (path, frames, spec, encoder) {
 
     return encoder.encodeGif(frames, spec)
     .then(gif => {
+        
+        if (!path) {
+            return gif;
+        }
 
         return _writeBinary(path, gif.buffer)
         .then(() => {
