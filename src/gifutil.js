@@ -255,7 +255,7 @@ exports.shareAsJimp = function (jimp, bitmapImageToShare) {
 exports.write = function (path, frames, spec, encoder) {
     encoder = encoder || defaultCodec;
     
-    if (path) {
+    if (!path) {
         return encoder.encodeGif(frames, spec).then(gif => gif);
     }
     
