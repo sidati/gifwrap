@@ -130,7 +130,7 @@ export namespace GifUtil {
             significantBits?: number, dither?: Dither): void;
     function read(source: string|Buffer, decoder?: GifDecoder): Promise<Gif>;
     function shareAsJimp(jimp: any, bitmapImageToCopy: BitmapImage): any;
-    function write(path: string, frames: GifFrame[], spec?: GifSpec, encoder?: GifEncoder):
+    function write(path: string | boolean, frames: GifFrame[], spec?: GifSpec, encoder?: GifEncoder):
             Promise<Gif>;
 }
 
